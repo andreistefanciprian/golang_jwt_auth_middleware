@@ -4,6 +4,7 @@ import (
 	"fmt"
 	"log"
 	"net/http"
+	"os"
 
 	jwt "github.com/golang-jwt/jwt/v4"
 )
@@ -11,7 +12,7 @@ import (
 // define vars
 var Port string = "3000"
 var HttpPort = fmt.Sprintf(":%s", Port)
-var mySigningKey = []byte("your-256-bit-secret")
+var mySigningKey = []byte(os.Getenv("JWT_SECRET_KEY"))
 
 // http handler
 func homePage(w http.ResponseWriter, r *http.Request) {
